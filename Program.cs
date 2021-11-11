@@ -17,6 +17,8 @@ namespace cse210_batter_csharp
             cast["bricks"] = new List<Actor>();
 
             // TODO: Add your bricks here
+            Brick brick = new Brick();
+            cast["bricks"].Add(brick);
 
             // The Ball (or balls if desired)
             cast["balls"] = new List<Actor>();
