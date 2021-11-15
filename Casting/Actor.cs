@@ -16,11 +16,33 @@ namespace cse210_batter_csharp.Casting
         protected string _text = "";
         private string _image = "";
 
+        protected int _ballDX = Constants.BALL_DX;
+        protected int _ballDY = Constants.BALL_DY;
+
         public Actor()
         {
             // Start these at 0, 0 by default
             _position = new Point(0, 0);
             _velocity = new Point(0, 0);
+        }
+
+        public void ChangeVelocityX()
+        {
+            SetVelocity(new Point(-_ballDX,_ballDY));
+        
+        }
+        public void ChangeVelocityNegX()
+        {
+            SetVelocity(new Point(-_ballDX,_ballDY));
+        
+        }
+        public void ChangeVelocityY()
+        {
+            SetVelocity(new Point(_ballDX,_ballDY));
+        }
+        public void ChangeVelocityNegY()
+        {
+            SetVelocity(new Point(-_ballDX,-_ballDY));
         }
 
 

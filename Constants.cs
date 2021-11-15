@@ -9,7 +9,7 @@ namespace cse210_batter_csharp
     {
         public const int MAX_X = 800;
         public const int MAX_Y = 600;
-        public const int FRAME_RATE = 30;
+        public const int FRAME_RATE = 50;
 
         public const int DEFAULT_SQUARE_SIZE = 20;
         public const int DEFAULT_FONT_SIZE = 20;
