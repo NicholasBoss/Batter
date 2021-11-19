@@ -39,6 +39,15 @@ namespace cse210_batter_csharp.Casting
             int y = velocity.GetY();
             SetVelocity(new Point(x,-y));
         }
+        public void ChangeSpeed()
+        {
+            Point velocity = GetVelocity();
+            double x = velocity.GetX();
+            double newspeed = x + 0.5;
+            int speed = Convert.ToInt32(newspeed);
+            int y = velocity.GetY();
+            SetVelocity(new Point(speed,-y));
+        }
 
 
 
