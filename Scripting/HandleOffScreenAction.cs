@@ -7,40 +7,40 @@ namespace cse210_batter_csharp.Scripting
 {
     public class HandleOffScreenAction : Action
     {
-        public HandleOffScreenAction()
+        AudioService _audioService;
+        Director _director;
+        public HandleOffScreenAction(AudioService audioService)
         {
+            _audioService = audioService;
         }
 
         public override void Execute(Dictionary<string, List<Actor>> cast)
         {
             List<Actor> balls = cast["balls"];
 
+            //if ball position is off the screen, change its velocity.
             foreach (Actor ball in balls)
             {
                 int ballx = ball.GetX();
 
                 int bally = ball.GetY();
-                // Console.WriteLine($"{ball.GetX()}, {ball.GetY()}");
-                //if ball position is off the screen, change its velocity.
-                if(ballx > 780)
+                
+                if(ball.GetRightEdge() >= Constants.MAX_X || ball.GetLeftEdge() <= 0)
                 {
-                    Console.WriteLine("true");
+                    _audioService.PlaySound(Constants.SOUND_BOUNCE);
                     ball.ChangeVelocityX();
                 }
-                if (ballx < 2)
+                if(ball.GetTopEdge() <= 0)
                 {
-                    Console.WriteLine("True");
+                    _audioService.PlaySound(Constants.SOUND_BOUNCE);
                     ball.ChangeVelocityY();
                 }
-                if(bally > 580)
+                if(ball.GetBottomEdge() >= Constants.MAX_Y)
                 {
-                    Console.WriteLine("True");
-                    ball.ChangeVelocityNegX();
+                    _audioService.PlaySound(Constants.SOUND_OVER);
+                    Raylib_cs.Raylib.CloseWindow();
                 }
-                if(bally < 10)
-                {
-                    ball.ChangeVelocityNegY();
-                }
+                
                 
             }
         }

@@ -1,5 +1,5 @@
 using System;
-
+using cse210_batter_csharp.Services;
 namespace cse210_batter_csharp.Casting
 {
     /// <summary>
@@ -16,8 +16,6 @@ namespace cse210_batter_csharp.Casting
         protected string _text = "";
         private string _image = "";
 
-        protected int _ballDX = Constants.BALL_DX;
-        protected int _ballDY = Constants.BALL_DY;
 
         public Actor()
         {
@@ -28,22 +26,20 @@ namespace cse210_batter_csharp.Casting
 
         public void ChangeVelocityX()
         {
-            SetVelocity(new Point(-_ballDX,_ballDY));
-        
-        }
-        public void ChangeVelocityNegX()
-        {
-            SetVelocity(new Point(-_ballDX,_ballDY));
+            Point velocity = GetVelocity();
+            int x = velocity.GetX();
+            int y = velocity.GetY();
+            SetVelocity(new Point(-x,y));
         
         }
         public void ChangeVelocityY()
         {
-            SetVelocity(new Point(_ballDX,_ballDY));
+            Point velocity = GetVelocity();
+            int x = velocity.GetX();
+            int y = velocity.GetY();
+            SetVelocity(new Point(x,-y));
         }
-        public void ChangeVelocityNegY()
-        {
-            SetVelocity(new Point(-_ballDX,-_ballDY));
-        }
+
 
 
         public void SetImage(string image)

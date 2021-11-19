@@ -44,6 +44,8 @@ namespace cse210_batter_csharp
             cast["paddle"] = new List<Actor>();
 
             // TODO: Add your paddle here
+            Paddle paddle = new Paddle();
+            cast["paddle"].Add(paddle);
 
             // Create the script
             Dictionary<string, List<Action>> script = new Dictionary<string, List<Action>>();
@@ -63,8 +65,12 @@ namespace cse210_batter_csharp
             // TODO: Add additional actions here to handle the input, move the actors, handle collisions, etc.
             MoveActorsAction moveActorsAction = new MoveActorsAction();
             script["update"].Add(moveActorsAction);
-            HandleOffScreenAction handleOffScreenAction = new HandleOffScreenAction();
+            HandleOffScreenAction handleOffScreenAction = new HandleOffScreenAction(audioService);
             script["update"].Add(handleOffScreenAction);
+            ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
+            script["update"].Add(controlActorsAction);
+            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService, audioService);
+            script["update"].Add(handleCollisionsAction);
 
             // Start up the game
             outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Batter", Constants.FRAME_RATE);
